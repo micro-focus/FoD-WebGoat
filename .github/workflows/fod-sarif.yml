@@ -1,4 +1,4 @@
-name: Fortify ScanCentral SAST Scan (SARIF File)
+name: Fortify on Demand Attach SARIF File
 on:
   workflow_dispatch:
   # Master or main branch that you want to trigger this workflow for
@@ -9,10 +9,10 @@ on:
     branches: [v.8.2.2]
 
 jobs:                                                  
-  Import-SSC-SAST:
+  Import-FoD-SAST:
     runs-on: ubuntu-latest
     steps:
-      # Wait for SAST scan to complete
+      # Use Java 11
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
@@ -28,7 +28,7 @@ jobs:
           fod_client_secret: ${{ secrets.FOD_API_SECRET }}
           fod_release_id: ${{ secrets.FOD_RELEASE_ID }}
       
-      # Import Fortify SAST results to GitHub Security Code Scanning
+      # Attach SARIF file
       - name: Upload Results
         uses: actions/upload-artifact@v2
         if: always()
