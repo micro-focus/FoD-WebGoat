@@ -31,7 +31,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: 1.17
+          java-version: 1.11
       
       # Prepare source+dependencies for upload. 
       # Update PACKAGE_OPTS based on the ScanCentral Client documentation and your project's included tech stack(s).
@@ -56,7 +56,7 @@ jobs:
           FOD_RELEASE_ID: ${{ secrets.FOD_RELEASE_ID }}
           FOD_URL: ${{ secrets.FOD_BASE_URL }}
           FOD_API_URL: ${{ secrets.FOD_API_URL }}
-          FOD_UPLOADER_OPTS: "-ep 2 -pp 0 -I 34 -apf"
+          FOD_UPLOADER_OPTS: "-ep 2 -pp 0 -I 1 -apf"
           FOD_UPLOADER_NOTES: 'Triggered by GitHub Actions (${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
 
       # Once scan completes, pull SAST issues from Fortify on Demand and generate SARIF output.
