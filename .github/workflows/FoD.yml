@@ -74,3 +74,11 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: ./gh-fortify-sast.sarif
+
+      # Attach SARIF file to workflow run
+      - name: Attach SARIF file
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: sarif-files
+          path: '**/*.sarif'
